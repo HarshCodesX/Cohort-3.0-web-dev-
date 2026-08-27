@@ -1,3 +1,4 @@
+// Otp component to render the otp page with 6 input boxes and a button
 import React, { useRef, useState } from 'react';
 import Button from './Button';
 
