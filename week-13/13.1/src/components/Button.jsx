@@ -1,3 +1,4 @@
+// Button component to render the button on the otp page
 import React from 'react'
 
 const Button = ({disabled, children, onClick}) => {
