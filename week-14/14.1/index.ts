@@ -1,3 +1,4 @@
+// comment
 function greet(firstName: string){
     console.log("Hello " + firstName);
 }
@@ -21,11 +22,11 @@ function isLegal(age: number){
 
 // console.log(isLegal(17))
 
-function delayedCall(fn : () => void){
+function delayedCall(fn : () => number){
     setTimeout(fn, 1000)
 }
 
 delayedCall(function(){
-    console.log("hello");
+    // console.log("hello");
     return 1;
 })
