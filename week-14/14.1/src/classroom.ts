@@ -1,16 +1,16 @@
 // interfaces in typescript
 
-interface userType {
+interface UserType {
     firstname: string,
     lastname: string,
     age: number
 }
 
-function greet(user: userType){
+function greet(user: UserType){
     console.log("hello " + user.firstname)
 }
 
-let user: userType = {
+let user: UserType = {
     firstname: "harsh",
     lastname: "gupta",
     age: 22
