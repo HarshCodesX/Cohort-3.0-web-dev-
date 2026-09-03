@@ -26,7 +26,7 @@ let legal = user.isLegal(55)
 console.log(legal);
 
 // abstract class example
-
+// in abstract class we can have default implementation but in interfaces we can not have default implementation (diff between interfaces and abstract class in typescript)
 abstract class Human{
     name: string;
     constructor(name: string){
