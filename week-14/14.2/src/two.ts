@@ -1,18 +1,20 @@
 // classes implementing interfaces
 
-interface Person{
+interface People{
     name: string,
     age: number,
-    greet: (name: string) => string
 }
 
-let person: Person = {
-    name: "Harsh",
-    age: 23,
-    greet: function(name){
-        return `Hello, my name is ${name} and I am ${this.age} years old.`;
+class Manager implements People{
+    name: string;
+    age: number;
+    number: string;
+    constructor(name: string, age: number){
+        this.name = name;
+        this.age = age;
+        this.number = "456789"
     }
 }
 
-let greeting = person.greet("lakshay");
-console.log(greeting)
+let user = new Manager("John", 30);
+console.log(user.age);
