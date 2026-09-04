@@ -22,7 +22,7 @@ const teamLead: TeamLead = {
     department: "Software developer"
 };
 
-// Union example (it can have either properties of each type as well as all the properties of each type)
+// Union example (it can have either properties of each type as well as all the properties of both type)
 
 type GoodUser = {
     name: string;
