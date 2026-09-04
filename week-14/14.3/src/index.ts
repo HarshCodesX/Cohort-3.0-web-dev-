@@ -1,4 +1,6 @@
-interface User{
+// we can use "pick" to create a new type, we can pick values from a interface as well as type
+
+type User = {
     id: string;
     name: string;
     age: number;
