@@ -24,3 +24,17 @@ const newObj: User = {
 }
 
 // newObj.name = "hurhfrh" // it will give error as both name as well as age are readonly now
+
+
+// Another syntax to use readonly
+type User2 = {
+    name: string;
+    age: number;
+}
+
+const obj2: Readonly<User2> = {
+    name: "mayur",
+    age: 24
+}
+
+// obj2.age = 14; // can not change as this is also readonly
