@@ -16,10 +16,33 @@ wss.on("connection", (socket) => {
     console.log("user connected # " + userCount);
 
     socket.on("message", (message)=>{
-        
-    });
+        //@ts-ignore
+        const parsedMessage = JSON.parse(message);
+        if(parsedMessage.type === "join"){
+            allSockets.push({
+                socket,
+                room: parsedMessage.payload.roomId
+            });
+        }
 
-    socket.on("disconnect", () => {
-        // allSockets = allSockets.filter((s) => s !== socket);
+        if(parsedMessage.type === "chat"){
+            //@ts-ignore
+            // const obj = allSockets.find((x) => x.socket == socket)?.room;
+            let currentUserRoom = null;
+            for(let i = 0; i < allSockets.length; i++){
+                //@ts-ignore
+                if(allSockets[i].socket === socket){
+                    //@ts-ignore
+                    currentUserRoom = allSockets[i].room;
+                    break;
+                }
+            }
+
+            for(const user of allSockets){
+                if(user.room === currentUserRoom){
+                    user.socket.send(JSON.stringify(parsedMessage.payload.message));
+                }
+            }
+        }
     });
-})
+});
