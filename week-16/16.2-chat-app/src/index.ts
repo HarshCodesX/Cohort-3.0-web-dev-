@@ -2,22 +2,24 @@ import { WebSocketServer, WebSocket } from "ws";
 
 const wss = new WebSocketServer({port: 8080});
 
+interface User {
+    socket: WebSocket;
+    room: string;
+}
+
 let userCount = 0;
-let allSockets: WebSocket[] = [];
+let allSockets: User[] = [];
 
 wss.on("connection", (socket) => {
-    allSockets.push(socket);
+
     userCount = userCount + 1; 
     console.log("user connected # " + userCount);
 
     socket.on("message", (message)=>{
-        setTimeout(() => {
-            // console.log("message received from client: " + message.toString());
-            allSockets.forEach((socket) => socket.send(message.toString() + " : sent from the server"));
-        }, 1500);
+        
     });
 
     socket.on("disconnect", () => {
-        allSockets = allSockets.filter((s) => s !== socket);
+        // allSockets = allSockets.filter((s) => s !== socket);
     });
 })
