@@ -12,14 +12,12 @@ const App = () => {
     }
     // hardcoding the joining room logic for now, will change later
     ws.onopen = (event) => {
-      ws.send({
         ws.send(JSON.stringify({
           type: "join",
           payload: {
             roomId: "green"
           }
         }))
-      })
     }
   }, []);
 
