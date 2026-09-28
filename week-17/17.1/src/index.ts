@@ -22,7 +22,7 @@ app.post("/signup", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
-    
+
     const city = req.body.city;
     const country = req.body.country;
     const street = req.body.street;
@@ -30,6 +30,9 @@ app.post("/signup", async (req, res) => {
 
     // const response = await pgClient.query(`insert into users (username, email, password) values('${username}', '${email}', '${password}')`);
     const response = await pgClient.query(`insert into users (username, email, password) values($1, $2, $3)`, [username, email, password]);
+    console.log(response);
+
+    const response2 = await pgClient.query(`insert into addresses (city, country, street, pincode, user_id) values($1, $2, $3, $4, $5)`, [city, country, street, pincode])
     res.json({
         message: "User created successfully"
     });
