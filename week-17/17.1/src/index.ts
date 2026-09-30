@@ -28,14 +28,27 @@ app.post("/signup", async (req, res) => {
     const street = req.body.street;
     const pincode = req.body.pincode;
 
+    await pgClient.query("Begin;");
     // const response = await pgClient.query(`insert into users (username, email, password) values('${username}', '${email}', '${password}')`);
     const response = await pgClient.query(`insert into users (username, email, password) values($1, $2, $3) returning id`, [username, email, password]);
     console.log(response);
 
-    const response2 = await pgClient.query(`insert into addresses (city, country, street, pincode, user_id) values($1, $2, $3, $4, $5)`, [city, country, street, pincode, response.rows[0].id]);
+    const response2 = await pgClient.query(`insert into addresses (city, country, street, pincode, user_id) values($1, $2, $3, $4, $5)`, [city, country, street, pincode,  response.rows[0].id]);
+    await pgClient.query("Commit;");
     res.json({
         message: "User created successfully"
     });
 });
+
+app.get("/metadata", async (req, res) => {
+    const id = req.query.id;
+    const response1 = await pgClient.query(`select * from users where id = $1`, [id]);
+    const response2 = await pgClient.query(`select * from addresses where user_id = $1`, [id]);
+
+    res.json({
+        user: response1.rows[0],
+        address: response2.rows
+    })
+})
 
 app.listen(3000);
