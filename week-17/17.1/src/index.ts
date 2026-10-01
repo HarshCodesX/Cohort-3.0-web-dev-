@@ -1,4 +1,5 @@
 // this file is the entry point of the application
+// comment
 import { Client } from "pg";
 import express from "express";
 
