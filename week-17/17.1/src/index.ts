@@ -1,5 +1,5 @@
 // this file is the entry point of the application
-// comment
+// importing pgclient from pg
 import { Client } from "pg";
 import express from "express";
 
