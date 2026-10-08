@@ -49,7 +49,7 @@ app.get("/metadata", async (req, res) => {
     res.json({
         user: response1.rows[0],
         address: response2.rows
-    })
+    });
 })
 
-app.listen(3000);
+app.listen(8080);
