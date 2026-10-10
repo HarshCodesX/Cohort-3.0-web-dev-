@@ -54,10 +54,20 @@ app.get("/metadata", async (req, res) => {
 
 app.get("/better-metadata", async (req, res) => {
     const id = req.query.id;
-    const response = await pgClient.query(`select users.id, users.username, users.email, addresses.city, addresses.country, addresses.street, addresses.pincode from users join addresses on users.id = addresses.userid where users.id = $1`, [id]);
+    // inner join
+    // const response = await pgClient.query(`select users.id, users.username, users.email, addresses.city, addresses.country, addresses.street, addresses.pincode from users join addresses on users.id = addresses.user_id where users.id = $1`, [id]);
+
+    // left join
+    // const response = await pgClient.query(`select users.id, users.username, users.email, addresses.city, addresses.country, addresses.street, addresses.pincode from users left join addresses on users.id = addresses.user_id where users.id = $1`, [id]);
+
+    // right join
+    // const response = await pgClient.query(`select users.id, users.username, users.email, addresses.city, addresses.country, addresses.street, addresses.pincode from users right join addresses on users.id = addresses.user_id where addresses.user_id = $1`, [id]);
+
+    // full join
+    const response = await pgClient.query(`select users.id, users.username, users.email, addresses.city, addresses.country, addresses.street, addresses.pincode from users full join addresses on users.id = addresses.user_id where users.id = $1`, [id]);
 
     res.json({
-        data: response.rows[0]
+        response: response.rows
     });
 });
 
