@@ -23,7 +23,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <div className="bg-blue-500 text-white p-4">Quizio</div>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

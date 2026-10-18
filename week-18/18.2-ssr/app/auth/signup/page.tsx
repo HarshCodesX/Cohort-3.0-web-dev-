@@ -1,6 +1,9 @@
+import Navbar from "@/components/Navbar";
+
 export default function Signin() {
-    return <div className="h-screen flex justify-center flex-col">
-        <div className="flex justify-center">
+    return <div className="h-screen flex flex-col">
+        <Navbar />
+        <div className="flex justify-center flex-1 items-center">
         <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 ">
                 <div>
                     <div className="px-10">
